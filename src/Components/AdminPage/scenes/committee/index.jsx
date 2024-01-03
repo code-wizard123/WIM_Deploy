@@ -5,6 +5,7 @@ import Header from "../../Header";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 import { GridActionsCellItem } from "@mui/x-data-grid";
+import env from "react-dotenv";
 
 const Customers = () => {
     const theme = useTheme();
@@ -12,14 +13,14 @@ const Customers = () => {
     const [members, setMembers] = useState([]);
 
     useEffect(() => {
-        axios.get("/auth/getCommittee").then((res) => {
+        axios.get(env.API_URL + "/auth/getCommittee").then((res) => {
             setMembers(res.data)
         });
     }, []);
 
     const handleDelete = async (id) => {
         console.log(id)
-        await axios.get(`/auth/deleteCommittee/${id}`).then((res) => {
+        await axios.get(env.API_URL + `/auth/deleteCommittee/${id}`).then((res) => {
             console.log(res)
         })
     };

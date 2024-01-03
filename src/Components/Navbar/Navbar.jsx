@@ -4,13 +4,14 @@ import { useCookies } from "react-cookie";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import env from "react-dotenv";
 
 const Navbar = ({ active }) => {
   const url = "/auth/news";
   const [data, setData] = useState([]);
 
   const fetchInfo = () => {
-    return axios.get(url).then((res) => {
+    return axios.get(env.API_URL + url).then((res) => {
       setData(res.data);
     });
   };

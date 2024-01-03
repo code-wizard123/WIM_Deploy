@@ -3,15 +3,14 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import img from "../../assets/sa.jpg";
-
+import env from "react-dotenv";
 
 const Login = () => {
+    console.log(env.API_URL)
     const [_, setCookies] = useCookies(["access_token"]);
-
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
 
     const navigate = useNavigate();
 
@@ -21,16 +20,18 @@ const Login = () => {
 
 
         try {
-            const result = await axios.post("/auth/login", {
+            const result = await axios.post(env.API_URL + "/auth/login", {
                 username,
                 password,
             });
 
+            console.log(result);
 
             setCookies("access_token", result.data.token);
             window.localStorage.setItem("userID", result.data.userID);
             navigate("/");
         } catch (error) {
+            console.log(error.response)
             alert(error.response.data.message);
         }
     };

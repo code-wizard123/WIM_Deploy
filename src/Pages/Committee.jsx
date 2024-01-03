@@ -4,13 +4,14 @@ import Footer from '../Components/Footer/Footer'
 import Navbar from "../Components/Navbar/Navbar";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import env from "react-dotenv";
 
 const Committee = () => {
     const url = "/auth/committee";
     const [data, setData] = useState([]);
 
     const fetchInfo = () => {
-        return axios.get(url).then((res) => setData(res.data));
+        return axios.get(env.API_URL + url).then((res) => setData(res.data));
     };
 
     useEffect(() => {

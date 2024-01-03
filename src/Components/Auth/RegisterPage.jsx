@@ -7,10 +7,7 @@ import "react-country-state-city/dist/react-country-state-city.css";
 import DatePicker from "react-datepicker";
 // import img from "../../assets/lll.webp";
 import "react-datepicker/dist/react-datepicker.css";
-
-
-
-
+import env from "react-dotenv";
 
 // Handle form submission
 // document.getElementById("submitOTP").addEventListener("click", function () {
@@ -195,7 +192,7 @@ const RegisterPage = () => {
         if (otpGenerated == true) {
             if (formData.password === formData.correctPassword) {
                 try {
-                    await axios.post("/auth/register", {
+                    await axios.get(env.API_URL + "/auth/register", {
                         fname: formData.fname,
                         lname: formData.lname,
                         gender: formData.gender,

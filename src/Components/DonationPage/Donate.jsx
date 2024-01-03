@@ -3,6 +3,7 @@ import html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
 import React, { useEffect, useState } from "react";
 import Receipt from "./Receipt";
+import env from "react-dotenv";
 
 const Donate = () => {
     const [fullName, setFullName] = useState("");
@@ -56,7 +57,7 @@ const Donate = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const res = await axios.get("/auth/committee");
+        const res = await axios.get(env.API_URL + "/auth/committee");
         const users = await res.data;
 
         const user = users.find((obj) => obj.username === userID);
@@ -86,7 +87,7 @@ const Donate = () => {
                 });
 
             // try {
-            //     await axios.post("/auth/donate", {
+            //     await axios.get(env.API_URL + "/auth/donate", {
             //         username: fullName,
             //         userid: userID,
             //         amount: amount,

@@ -15,6 +15,7 @@ import OverviewChart from "../../OverviewChart";
 import StatBox from "../../StatBox";
 import axios from 'axios';
 import { useEffect } from "react";
+import env from "react-dotenv";
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -26,9 +27,9 @@ const Dashboard = () => {
   const [average, setAverage] = useState(null);
 
   useEffect(() => {
-    axios.get("/getMembers/members").then((res) => setMembers(res.data));
+    axios.get(env.API_URL + "/getMembers/members").then((res) => setMembers(res.data));
 
-    axios.get("/fetch/getTop").then((res) => {
+    axios.get(env.API_URL + "/fetch/getTop").then((res) => {
       setTopDonor(res.data[0])
       setQueries(true)
     })
@@ -37,7 +38,7 @@ const Dashboard = () => {
         console.log(err)
       })
     
-    axios.get("/fetch/getBottom").then((res) => {
+    axios.get(env.API_URL + "/fetch/getBottom").then((res) => {
       setBottom(res.data[0])
       setQueries(true)
     }).catch((err) => {
@@ -45,7 +46,7 @@ const Dashboard = () => {
       console.log(err)
     })
 
-    axios.get("/fetch/average").then((res) => {
+    axios.get(env.API_URL + "/fetch/average").then((res) => {
       setAverage(res.data[0])
       setQueries(true)
     }).catch((err) => {

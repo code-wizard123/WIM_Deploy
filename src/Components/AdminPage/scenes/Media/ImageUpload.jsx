@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'; // Import Axios for making HTTP requests
+import env from "react-dotenv";
 
 function ImageUpload({ name }) {
   const [image, setImage] = useState("");
@@ -24,7 +25,7 @@ function ImageUpload({ name }) {
   const uploadImage = async () => {
     try {
       // Send a POST request to your Express backend
-      const response = await axios.post('/upload/upload', { image });
+      const response = await axios.get(env.API_URL + '/upload/upload', { image });
       console.log('Request data:', response.config.data);
       console.log('Response data:', response.data);
 

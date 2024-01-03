@@ -1,12 +1,11 @@
 import React, { useRef, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 import axios from "axios";
-
+import env from "react-dotenv";
 
 mapboxgl.accessToken = 'pk.eyJ1IjoicmF1bmFrc2luZ2hrYWxzaSIsImEiOiJjbHFwZHZlaHgycDJpMnFvMDU1NG9vb3Z2In0.Cb5RR1VPzsiMKR9cJd4U6A';
 
 const Map = () => {
-
     const mapContainer = useRef(null);
     const map = useRef(null);
 
@@ -14,7 +13,7 @@ const Map = () => {
     const [data, setData] = React.useState([]);
 
     const fetchInfo = async () => {
-        const data = await axios.get(url).then((res) => setData(res.data));
+        const data = await axios.get(env.API_URL + url).then((res) => setData(res.data));
         return data;
     };
 

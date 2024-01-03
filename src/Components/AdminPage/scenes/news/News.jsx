@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import env from "react-dotenv";
 
 const NewsPage = () => {
     const [news, setNews] = useState([]);
@@ -13,7 +14,7 @@ const NewsPage = () => {
 
     const fetchNews = async () => {
         try {
-            const response = await axios.get('/news/getAllNews');
+            const response = await axios.get(env.API_URL + '/news/getAllNews');
             setNews(response.data);
         } catch (error) {
             console.error('Error fetching news:', error);
@@ -30,7 +31,7 @@ const NewsPage = () => {
 
     const addNews = async () => {
         try {
-            await axios.post('/news/addNews', newNews);
+            await axios.get(env.API_URL + '/news/addNews', newNews);
             setNewNews({ description: '' });
             fetchNews();
         } catch (error) {

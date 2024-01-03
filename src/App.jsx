@@ -21,10 +21,6 @@ import {
 } from "react-router-dom";
 import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 
-if(process.env.NODE_ENV === 'production') {
-  disableReactDevTools();
-}
-
 const router = createBrowserRouter([
   {
     exact: true,
