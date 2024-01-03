@@ -23,15 +23,6 @@ app.use(express.json()) // automatic conversion to json
 app.use(bodyParser.json())
 app.use(cors())
 
-app.get("/*", function (req, res) {
-    res.sendFile(path.join(__dirname, "deploy/index.html"), function (err) {
-      if (err) {
-        res.status(500).send(err);
-      }
-    });
-  });
-  
-
 app.use("/auth", userRouter)
 app.use("/fetch", dataRouter)
 app.use("/upload", imageUploadRouter)
